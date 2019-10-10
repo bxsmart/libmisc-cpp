@@ -57,7 +57,6 @@ public:
 	static string strArr2sqlStr(const vector<string>& arr); 
 	static string toUpercase(const string& str); 
 	static string toLowercase(const string& str); 
-	static string gbk2utf8(const string& gbk); 
 	static list<string> getEnvs(); 
 	static string getEnvStr(const char* key, const char* def = NULL); 
 	static int getEnvInt(const char* key, int def = 0);
