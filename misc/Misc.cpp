@@ -119,36 +119,37 @@ size_t Misc::hash(const string& str)
 	return std::hash<string> { }(str);
 }
 
-bool Misc::checkNameFormat(const char* name, int min, int max)
+bool Misc::checkNameFormat(const string& name, int min, int max)
 {
-	if (name == NULL)
+	if (name.empty())
 		return false;
-	int len = ::strlen(name);
+	int len = (int) name.length();
 	if (len < min || len > max)
 		return false;
 	for (int i = 0; i < len; ++i)
 	{
-		if ((::isdigit(name[i]) == 0) && (::isalpha(name[i]) == 0) && (name[i] != '-') && (name[i] != '@') && (name[i] != '.') && (name[i] != '_'))
+		if ((::isdigit(name.data()[i]) == 0) && (::isalpha(name.data()[i]) == 0) && (name.data()[i] != '-') && 
+				(name.data()[i] != '@') && (name.data()[i] != '.') && (name.data()[i] != '_'))
 			return false;
 	}
 	return true;
 }
 
-bool Misc::checkPwdFormat(const char* name, int min, int max)
+bool Misc::checkPwdFormat(const string& name, int min, int max)
 {
 	return Misc::checkNameFormat(name, min, max);
 }
 
-bool Misc::checkEmailFormat(const char* email, int max)
+bool Misc::checkEmailFormat(const string& email, int max)
 {
-	if (email == NULL)
+	if (email.empty())
 		return false;
-	int len = ::strlen(email);
+	int len = email.length();
 	if (len < 3 || len > max) 
 		return false;
 	for (int i = 0; i < len; ++i)
 	{
-		if (email[i] != 0x2E && email[i] != 0x40 && (::isdigit(email[i]) == 0) && (::isalpha(email[i]) == 0))
+		if (email.data()[i] != 0x2E && email.data()[i] != 0x40 && (::isdigit(email.data()[i]) == 0) && (::isalpha(email.data()[i]) == 0))
 			return false;
 	}
 	return true;

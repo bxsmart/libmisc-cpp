@@ -38,9 +38,9 @@ public:
 	static void lazyExit(); 
 	static uint getTid(); 
 	static size_t hash(const string& str); 
-	static bool checkNameFormat(const char* name, int min, int max); 
-	static bool checkPwdFormat(const char* name, int min, int max); 
-	static bool checkEmailFormat(const char* email, int max); 
+	static bool checkNameFormat(const string& name, int min, int max); 
+	static bool checkPwdFormat(const string& name, int min, int max); 
+	static bool checkEmailFormat(const string& email, int max); 
 	static bool checkRegex(const char* str, const char* pattern); 
 	static bool checkUtf8str(const string& role, int min, int max); 
 	static bool isAlphaString(const char* str); 
