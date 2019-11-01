@@ -72,14 +72,14 @@ public:
 	static ullong htonll(ullong h); 
 	static ullong ntohll(ullong n); 
 #endif
-	static bool isHexStr(uchar* dat, int len); 
-	static void hex2strUperCaseSpace(uchar* dat, int len, char* str); 
-	static string hex2strUperCaseSpace(uchar* dat, int len); 
-	static void hex2strUperCase(uchar* dat, int len, char* str); 
-	static string hex2strUperCase(uchar* dat, int len); 
+	static bool isHexStr(const uchar* dat, int len); 
+	static void hex2strUperCaseSpace(const uchar* dat, int len, char* str); 
+	static string hex2strUperCaseSpace(const uchar* dat, int len); 
+	static void hex2strUperCase(const uchar* dat, int len, char* str); 
+	static string hex2strUperCase(const uchar* dat, int len); 
 	static string hex2strUperCase(const string& str); 
-	static void hex2strLowerCase(uchar* dat, int len, char* str); 
-	static string hex2strLowerCase(uchar* dat, int len); 
+	static void hex2strLowerCase(const uchar* dat, int len, char* str); 
+	static string hex2strLowerCase(const uchar* dat, int len); 
 	static uchar hexStr2byte(const char* hex); 
 	static ushort hexStr2short(const char* hex); 
 	static uint hexStr2int(const char* hex); 
@@ -89,9 +89,9 @@ public:
 	static string hexStr2bytesSpace(const string& str); 
 	static uint hexOrint(const char* hex); 
 	static void int2hexStr(uint i, char* str); 
-	static void printHex(uchar *dat, int len); 
-	static void printHex2str(uchar* dat, int len, char* str); 
-	static string printHex2str(uchar* dat, int len); 
+	static void printHex(const uchar *dat, int len); 
+	static void printHex2str(const uchar* dat, int len, char* str); 
+	static string printHex2str(const uchar* dat, int len); 
 	static void printInt2binStr(uint v, char* str); 
 	static void printLong2binStr(ullong v, char* str); 
 	static string itoa(int v);

@@ -611,7 +611,7 @@ ullong Net::ntohll(ullong n)
 }
 #endif
 
-bool Net::isHexStr(uchar* dat, int len)
+bool Net::isHexStr(const uchar* dat, int len)
 {
 	if (len < 1)
 		return false;
@@ -632,7 +632,7 @@ bool Net::isHexStr(uchar* dat, int len)
 	return true;
 }
 
-void Net::hex2strUperCaseSpace(uchar* dat, int len, char* str)
+void Net::hex2strUperCaseSpace(const uchar* dat, int len, char* str)
 {
 	int i = 0;
 	for (; i < len; ++i)
@@ -644,7 +644,7 @@ void Net::hex2strUperCaseSpace(uchar* dat, int len, char* str)
 	str[i * 3 - 1] = 0;
 }
 
-string Net::hex2strUperCaseSpace(uchar* dat, int len)
+string Net::hex2strUperCaseSpace(const uchar* dat, int len)
 {
 	char* buf = (char*) ::calloc(1, len * 3 + 1);
 	Net::hex2strUperCaseSpace(dat, len, buf);
@@ -653,7 +653,7 @@ string Net::hex2strUperCaseSpace(uchar* dat, int len)
 	return str;
 }
 
-void Net::hex2strUperCase(uchar* dat, int len, char* str)
+void Net::hex2strUperCase(const uchar* dat, int len, char* str)
 {
 	for (int i = 0; i < len; ++i)
 	{
@@ -662,7 +662,7 @@ void Net::hex2strUperCase(uchar* dat, int len, char* str)
 	}
 }
 
-string Net::hex2strUperCase(uchar* dat, int len)
+string Net::hex2strUperCase(const uchar* dat, int len)
 {
 	string str;
 	str.resize(len * 2);
@@ -674,11 +674,11 @@ string Net::hex2strUperCase(const string& str)
 {
 	string x;
 	x.resize(str.length() * 2);
-	Net::hex2strUperCase((uchar*) str.c_str(), str.length(), (char*) x.c_str());
+	Net::hex2strUperCase((const uchar*) str.c_str(), str.length(), (char*) x.c_str());
 	return str;
 }
 
-void Net::hex2strLowerCase(uchar* dat, int len, char* str)
+void Net::hex2strLowerCase(const uchar* dat, int len, char* str)
 {
 	for (int i = 0; i < len; ++i)
 	{
@@ -687,7 +687,7 @@ void Net::hex2strLowerCase(uchar* dat, int len, char* str)
 	}
 }
 
-string Net::hex2strLowerCase(uchar* dat, int len)
+string Net::hex2strLowerCase(const uchar* dat, int len)
 {
 	char* buf = (char*) ::calloc(1, len * 2 + 1);
 	Net::hex2strLowerCase(dat, len, buf);
@@ -784,7 +784,7 @@ void Net::int2hexStr(uint i, char* str)
 	str[7] = __0F__[(i & 0x0F)];
 }
 
-void Net::printHex(uchar *dat, int len)
+void Net::printHex(const uchar *dat, int len)
 {
 	int rows = len / 16;
 	int ac = len % 16;
@@ -834,7 +834,7 @@ void Net::printHex(uchar *dat, int len)
 	::printf("\n");
 }
 
-void Net::printHex2str(uchar* dat, int len, char* str)
+void Net::printHex2str(const uchar* dat, int len, char* str)
 {
 	int rows = len / 16;
 	int ac = len % 16;
@@ -890,7 +890,7 @@ void Net::printHex2str(uchar* dat, int len, char* str)
 	}
 }
 
-string Net::printHex2str(uchar* dat, int len)
+string Net::printHex2str(const uchar* dat, int len)
 {
 	char* buf = (char*) ::calloc(1, (len / 16) * 65 + 65);
 	Net::printHex2str(dat, len, buf);

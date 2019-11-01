@@ -119,6 +119,24 @@ size_t Misc::hash(const string& str)
 	return std::hash<string> { }(str);
 }
 
+bool Misc::isGreat(ullong a, ullong b)
+{
+	if (a > b)
+		return true;
+	if (a == b)
+		return false;
+	return (b - a) > 0x00000000FFFFFFFFULL;
+}
+
+bool Misc::isGreatOrEq(ullong a, ullong b)
+{
+	if (a > b)
+		return true;
+	if (a == b)
+		return true;
+	return (b - a) > 0x00000000FFFFFFFFULL;
+}
+
 bool Misc::checkNameFormat(const string& name, int min, int max)
 {
 	if (name.empty())

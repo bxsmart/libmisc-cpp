@@ -38,6 +38,8 @@ public:
 	static void lazyExit(); 
 	static uint getTid(); 
 	static size_t hash(const string& str); 
+	static bool isGreat(ullong a, ullong b); 
+	static bool isGreatOrEq(ullong a, ullong b); 
 	static bool checkNameFormat(const string& name, int min, int max); 
 	static bool checkPwdFormat(const string& name, int min, int max); 
 	static bool checkEmailFormat(const string& email, int max); 
