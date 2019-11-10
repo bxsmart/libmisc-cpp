@@ -53,7 +53,7 @@ public:
 	static bool isVisAdStr(string* str); 
 	static bool startWith(const string& str, const string& sub); 
 	static bool endWith(const string& str, const string& sub); 
-	static void split(const string str, const string& key, vector<string>& arr, int num = 0 ); 
+	static void split(const string& str, const string& key, vector<string>& arr, int num = 0 ); 
 	static string replaceAll(string& str, const string& org, const string& des); 
 	static string intArr2sqlStr(const vector<int>& arr); 
 	static string strArr2sqlStr(const vector<string>& arr); 

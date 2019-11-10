@@ -784,7 +784,7 @@ void Net::int2hexStr(uint i, char* str)
 	str[7] = __0F__[(i & 0x0F)];
 }
 
-void Net::printHex(const uchar *dat, int len)
+void Net::printHex(const uchar* dat, int len)
 {
 	int rows = len / 16;
 	int ac = len % 16;

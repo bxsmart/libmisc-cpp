@@ -291,7 +291,7 @@ bool Misc::endWith(const string& str, const string& sub)
 	return true;
 }
 
-void Misc::split(const string str, const string& key, vector<string>& arr, int num)
+void Misc::split(const string& str, const string& key, vector<string>& arr, int num)
 {
 	int pos = 0;
 	int keylen = (int) key.length();

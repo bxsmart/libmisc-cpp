@@ -89,7 +89,7 @@ public:
 	static string hexStr2bytesSpace(const string& str); 
 	static uint hexOrint(const char* hex); 
 	static void int2hexStr(uint i, char* str); 
-	static void printHex(const uchar *dat, int len); 
+	static void printHex(const uchar* dat, int len); 
 	static void printHex2str(const uchar* dat, int len, char* str); 
 	static string printHex2str(const uchar* dat, int len); 
 	static void printInt2binStr(uint v, char* str); 
