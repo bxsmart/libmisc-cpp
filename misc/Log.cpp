@@ -59,11 +59,11 @@ void Log::setOutput(const string& str)
 		return;
 	}
 	uchar o = LOG_DISABLE;
-	if (str.find("STDOUT") >= 0)
+	if (str.find("STDOUT") != string::npos)
 		o |= LOG_STDOUT;
-	if (str.find("FILE") >= 0)
+	if (str.find("FILE") != string::npos)
 		o |= LOG_FILE;
-	if (str.find("UPSTREAM") >= 0)
+	if (str.find("UPSTREAM") != string::npos)
 		o |= LOG_UPSTREAM;
 	if (o != LOG_DISABLE)
 		Log::setOutput(o);
