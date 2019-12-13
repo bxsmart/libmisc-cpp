@@ -49,9 +49,9 @@ public:
 	static int tcpRecvNoBlocking(int sock, uchar* buff, int size); 
 	static bool tcpRecvN(int sock, uchar* buff, int size); 
 	static int tcpSend(int sock, uchar* buff, int size); 
-	static int udpBind(const char* host, ushort port, struct sockaddr_in* addr); 
-	static int udpBindNoBlocking(const char* host, ushort port, struct sockaddr_in* addr); 
-	static int udpBindBroadCast(const char* host, ushort port, struct sockaddr_in* addr); 
+	static int udpBind(const char* host, ushort port, struct sockaddr_in* addr, int buf = 64); 
+	static int udpBindNoBlocking(const char* host, ushort port, struct sockaddr_in* addr, int buf = 64); 
+	static int udpBindBroadCast(const char* host, ushort port, struct sockaddr_in* addr, int buf = 64); 
 	static int udpRecv(int sock, uchar* buff, int size, struct sockaddr_in* from); 
 	static int udpSend(int sock, uchar* buff, int size, struct sockaddr_in* to); 
 	static bool setNoBlocking(int sock); 

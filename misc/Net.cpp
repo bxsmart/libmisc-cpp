@@ -276,7 +276,7 @@ int Net::tcpSend(int sock, uchar* buff, int size)
 	return ::send(sock, (char*) buff, size, 0);
 }
 
-int Net::udpBind(const char* host, ushort port, struct sockaddr_in* addr)
+int Net::udpBind(const char* host, ushort port, struct sockaddr_in* addr, int buf)
 {
 	int sock = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	int x = SO_REUSEADDR;
@@ -285,7 +285,15 @@ int Net::udpBind(const char* host, ushort port, struct sockaddr_in* addr)
 		Net::close(sock);
 		return -1;
 	}
-	x = 512 * 1472;
+#ifdef SO_REUSEPORT
+	x = SO_REUSEPORT;
+	if (::setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (char*) &x, sizeof(int)) != 0)
+	{
+		Net::close(sock);
+		return -1;
+	}
+#endif
+	x = buf * 1472;
 	Net::setRCVBUF(sock, x);
 	Net::setSNDBUF(sock, x);
 	if (addr == NULL)
@@ -309,7 +317,7 @@ int Net::udpBind(const char* host, ushort port, struct sockaddr_in* addr)
 	return sock;
 }
 
-int Net::udpBindNoBlocking(const char* host, ushort port, struct sockaddr_in* addr)
+int Net::udpBindNoBlocking(const char* host, ushort port, struct sockaddr_in* addr, int buf)
 {
 	int sock = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	int x = SO_REUSEADDR;
@@ -318,12 +326,20 @@ int Net::udpBindNoBlocking(const char* host, ushort port, struct sockaddr_in* ad
 		Net::close(sock);
 		return -1;
 	}
-	if (Net::setNoBlocking(sock) != 0)
+#ifdef SO_REUSEPORT
+	x = SO_REUSEPORT;
+	if (::setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (char*) &x, sizeof(int)) != 0)
 	{
 		Net::close(sock);
 		return -1;
 	}
-	x = 512 * 1472;
+#endif
+	if (!Net::setNoBlocking(sock))
+	{
+		Net::close(sock);
+		return -1;
+	}
+	x = buf * 1472;
 	Net::setRCVBUF(sock, x);
 	Net::setSNDBUF(sock, x);
 	if (addr == NULL)
@@ -347,7 +363,7 @@ int Net::udpBindNoBlocking(const char* host, ushort port, struct sockaddr_in* ad
 	return sock;
 }
 
-int Net::udpBindBroadCast(const char* host, ushort port, struct sockaddr_in* addr)
+int Net::udpBindBroadCast(const char* host, ushort port, struct sockaddr_in* addr, int buf)
 {
 	int sock = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	int x = SO_REUSEADDR;
@@ -365,7 +381,7 @@ int Net::udpBindBroadCast(const char* host, ushort port, struct sockaddr_in* add
 		return -1;
 	}
 #endif
-	x = 512 * 1472;
+	x = buf * 1472;
 	Net::setRCVBUF(sock, x);
 	Net::setSNDBUF(sock, x);
 	if (addr == NULL)
